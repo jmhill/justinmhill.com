@@ -17,7 +17,8 @@ keystone.init({
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
-	'view engine': 'pug',
+	'view engine': 'jsx',
+	'custom engine': require('express-react-views').createEngine(),
 
 	'emails': 'templates/emails',
 
