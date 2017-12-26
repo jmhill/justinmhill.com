@@ -10,5 +10,5 @@ exports = module.exports = function (req, res) {
   props.section = 'home';
 
   // Render the view
-  view.render('index', props);
+  view.render('index');
 };
