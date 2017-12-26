@@ -2,8 +2,17 @@
 // customising the .env file in your project's root folder.
 require('dotenv').config();
 
+// development only
+// TODO: remove this
+require('babel-register')({
+  presets: ['react'],
+});
+
 // Require keystone
 var keystone = require('keystone');
+
+var renderer = require('react-engine');
+var engine = renderer.server.create();
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -18,7 +27,8 @@ keystone.init({
   'favicon': 'public/favicon.ico',
   'views': 'templates/views',
   'view engine': 'jsx',
-  'custom engine': require('express-react-views').createEngine(),
+  'custom engine': engine,
+  'view': renderer.expressView,
 
   'emails': 'templates/emails',
 
