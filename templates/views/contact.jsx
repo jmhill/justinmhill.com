@@ -1,7 +1,7 @@
 const React = require('react');
 const DefaultLayout = require('../layouts/DefaultLayout.jsx');
 
-const Index = (props) => {
+const Contact = (props) => {
   return (
     <DefaultLayout>
       <div>Section: {props.section}</div>
@@ -9,4 +9,4 @@ const Index = (props) => {
   );
 };
 
-module.exports = Index;
+module.exports = Contact;
