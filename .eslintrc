@@ -1,9 +1,11 @@
 {
-    "extends": [
-        "keystone-react"
-    ],
-    "rules": {
-        "react/jsx-indent": [2, 2],
-        "indent": [2, 2]
-    }
+  "extends": [
+    "keystone-react"
+  ],
+  "rules": {
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
+    "indent": [2, 2],
+    "space-before-function-paren": "off"
+  }
 }
