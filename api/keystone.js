@@ -25,16 +25,13 @@ keystone.init({
   'less': 'public',
   'static': 'public',
   'favicon': 'public/favicon.ico',
-  'views': 'templates/views',
-  'view engine': 'jsx',
-  'custom engine': engine,
-  'view': renderer.expressView,
 
-  'emails': 'templates/emails',
+  // 'emails': 'templates/emails',
 
   'auto update': true,
   'session': true,
   'auth': true,
+  'cookie secret': 'stupidTemporarySecret',
   'user model': 'User',
 });
 
