@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node keystone.js",
+    "start": "node api/keystone.js",
     "debug": "nodemon --inspect keystone.js -e js,jsx"
   }
 }
