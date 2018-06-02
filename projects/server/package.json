@@ -1,0 +1,11 @@
+{
+  "name": "@jmhill/justinmhill-server",
+  "version": "0.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@jmhill/justinmhill-api": "0.0.x",
+    "@jmhill/justinmhill-server": "0.0.x"
+  }
+}

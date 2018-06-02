@@ -1,5 +1,5 @@
 {
-  "name": "justinmhill-client",
+  "name": "@jmhill/justinmhill-client",
   "version": "0.0.0",
   "description": "Client-side application for justinmhill.com",
   "main": "index.js",

@@ -1,8 +1,8 @@
 {
-  "name": "justinmhill-api",
+  "name": "@jmhill/justinmhill-api",
   "version": "0.0.0",
   "description": "Content management API for justinmhill.com",
-  "main": "keystone.js",
+  "main": "index.js",
   "license": "MIT",
   "private": true,
   "dependencies": {
