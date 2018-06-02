@@ -5,9 +5,6 @@
   "dependencies": {
     "@neutrinojs/airbnb": "^8.2.3",
     "@neutrinojs/node": "^8.2.3",
-    "async": "2.1.4",
-    "dotenv": "4.0.0",
-    "lodash": "^4.13.1",
     "neutrino": "^8.2.3"
   },
   "devDependencies": {
