@@ -2,17 +2,8 @@
 // customising the .env file in your project's root folder.
 require('dotenv').config();
 
-// development only
-// TODO: remove this
-require('babel-register')({
-  presets: ['react'],
-});
-
 // Require keystone
 var keystone = require('keystone');
-
-var renderer = require('react-engine');
-var engine = renderer.server.create();
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -22,9 +13,9 @@ keystone.init({
   'name': 'justinmhill.com',
   'brand': 'justinmhill.com',
 
-  'less': 'public',
-  'static': 'public',
-  'favicon': 'public/favicon.ico',
+  // 'less': 'public',
+  // 'static': 'public',
+  // 'favicon': 'public/favicon.ico',
 
   // 'emails': 'templates/emails',
 
@@ -63,15 +54,15 @@ keystone.set('nav', {
 // Start Keystone to connect to your database and initialise the web server
 
 
-if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
-  console.log('----------------------------------------'
-	+ '\nWARNING: MISSING MAILGUN CREDENTIALS'
-	+ '\n----------------------------------------'
-	+ '\nYou have opted into email sending but have not provided'
-	+ '\nmailgun credentials. Attempts to send will fail.'
-	+ '\n\nCreate a mailgun account and add the credentials to the .env file to'
-	+ '\nset up your mailgun integration');
-}
+// if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
+//   console.log('----------------------------------------'
+// 	+ '\nWARNING: MISSING MAILGUN CREDENTIALS'
+// 	+ '\n----------------------------------------'
+// 	+ '\nYou have opted into email sending but have not provided'
+// 	+ '\nmailgun credentials. Attempts to send will fail.'
+// 	+ '\n\nCreate a mailgun account and add the credentials to the .env file to'
+// 	+ '\nset up your mailgun integration');
+// }
 
 
 keystone.start();

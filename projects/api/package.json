@@ -10,7 +10,7 @@
     "keystone-email": "1.0.5"
   },
   "scripts": {
-    "start": "node api/keystone.js",
+    "start": "node keystone.js",
     "debug": "nodemon --inspect keystone.js -e js,jsx"
   }
 }
