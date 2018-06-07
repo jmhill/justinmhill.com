@@ -1,7 +1,7 @@
 const React = require('react');
 
 const ContentBlock = (props) => {
-  let content = props.content;
+  const content = props.content;
 
   return (
     <div>

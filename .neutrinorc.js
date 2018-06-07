@@ -1,9 +1,9 @@
 module.exports = {
   options: {
-    src: 'projects',
+    source: 'projects',
   },
   use: [
     '@neutrinojs/airbnb',
-    '@neutrinojs/react',
+    '@neutrinojs/node',
   ],
 };

@@ -1,19 +1,22 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+
+const Types = keystone.Field.Types;
 
 /**
  * Post Model
  * ==========
  */
 
-var Post = new keystone.List('Post', {
+const Post = new keystone.List('Post', {
   map: { name: 'title' },
   autokey: { path: 'slug', from: 'title', unique: true },
 });
 
 Post.add({
   title: { type: String, required: true },
-  state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
+  state: {
+    type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true,
+  },
   author: { type: Types.Relationship, ref: 'User', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
   // image: { type: Types.CloudinaryImage },

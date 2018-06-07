@@ -1,10 +1,9 @@
-var keystone = require('keystone');
-var async = require('async');
+const keystone = require('keystone');
+const async = require('async');
 
 exports = module.exports = function (req, res) {
-
-  var view = new keystone.View(req, res);
-  var locals = res.locals;
+  const view = new keystone.View(req, res);
+  const locals = res.locals;
 
   // Init locals
   locals.section = 'blog';
@@ -17,10 +16,8 @@ exports = module.exports = function (req, res) {
   };
 
   // Load all categories
-  view.on('init', function (next) {
-
-    keystone.list('PostCategory').model.find().sort('name').exec(function (err, results) {
-
+  view.on('init', (next) => {
+    keystone.list('PostCategory').model.find().sort('name').exec((err, results) => {
       if (err || !results.length) {
         return next(err);
       }
@@ -28,24 +25,21 @@ exports = module.exports = function (req, res) {
       locals.data.categories = results;
 
       // Load the counts for each category
-      async.each(locals.data.categories, function (category, next) {
-
-        keystone.list('Post').model.count().where('categories').in([category.id]).exec(function (err, count) {
+      async.each(locals.data.categories, (category, next) => {
+        keystone.list('Post').model.count().where('categories').in([category.id]).exec((err, count) => {
           category.postCount = count;
           next(err);
         });
-
-      }, function (err) {
+      }, (err) => {
         next(err);
       });
     });
   });
 
   // Load the current category filter
-  view.on('init', function (next) {
-
+  view.on('init', (next) => {
     if (req.params.category) {
-      keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+      keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec((err, result) => {
         locals.data.category = result;
         next(err);
       });
@@ -55,9 +49,8 @@ exports = module.exports = function (req, res) {
   });
 
   // Load the posts
-  view.on('init', function (next) {
-
-    var q = keystone.list('Post').paginate({
+  view.on('init', (next) => {
+    const q = keystone.list('Post').paginate({
       page: req.query.page || 1,
       perPage: 10,
       maxPages: 10,
@@ -72,7 +65,7 @@ exports = module.exports = function (req, res) {
       q.where('categories').in([locals.data.category]);
     }
 
-    q.exec(function (err, results) {
+    q.exec((err, results) => {
       locals.data.posts = results;
       next(err);
     });

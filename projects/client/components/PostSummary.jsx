@@ -1,8 +1,8 @@
 const React = require('react');
 
 const PostSummary = (props) => {
-  var post = props.post;
-    
+  const post = props.post;
+
   return (
     <section className="post">
       <h2 className="post-title">
@@ -19,7 +19,9 @@ const PostSummary = (props) => {
 
 function formatDate(dateString) {
   const date = new Date(dateString);
-  const format = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const format = {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+  };
   return date.toLocaleDateString('en-US', format);
 }
 
@@ -28,6 +30,6 @@ PostSummary.propTypes = {
     title: React.PropTypes.string.isRequired,
     url: React.PropTypes.string.isRequired,
     datePublished: React.PropTypes.string,
-    summary: React.PropTypes.string
+    summary: React.PropTypes.string,
   }),
 };

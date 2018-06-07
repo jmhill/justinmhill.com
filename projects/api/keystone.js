@@ -1,18 +1,18 @@
-module.exports = function() {
+module.exports = function () {
   // Simulate config options from your production environment by
   // customising the .env file in your project's root folder.
   require('dotenv').config();
 
   // Require keystone
-  var keystone = require('keystone');
+  const keystone = require('keystone');
 
   // Initialise Keystone with your project's configuration.
   // See http://keystonejs.com/guide/config for available options
   // and documentation.
 
   keystone.init({
-    'name': 'justinmhill.com',
-    'brand': 'justinmhill.com',
+    name: 'justinmhill.com',
+    brand: 'justinmhill.com',
 
     // 'less': 'public',
     // 'static': 'public',
@@ -21,8 +21,8 @@ module.exports = function() {
     // 'emails': 'templates/emails',
 
     'auto update': true,
-    'session': true,
-    'auth': true,
+    session: true,
+    auth: true,
     'cookie secret': 'stupidTemporarySecret',
     'user model': 'User',
   });

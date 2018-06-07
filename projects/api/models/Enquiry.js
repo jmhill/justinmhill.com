@@ -1,12 +1,13 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+
+const Types = keystone.Field.Types;
 
 /**
  * Enquiry Model
  * =============
  */
 
-var Enquiry = new keystone.List('Enquiry', {
+const Enquiry = new keystone.List('Enquiry', {
   nocreate: true,
   noedit: true,
 });
@@ -15,11 +16,14 @@ Enquiry.add({
   name: { type: Types.Name, required: true },
   email: { type: Types.Email, required: true },
   phone: { type: String },
-  enquiryType: { type: Types.Select, options: [
-		{ value: 'message', label: 'Just leaving a message' },
-		{ value: 'question', label: 'I\'ve got a question' },
-		{ value: 'other', label: 'Something else...' },
-  ] },
+  enquiryType: {
+    type: Types.Select,
+    options: [
+      { value: 'message', label: 'Just leaving a message' },
+      { value: 'question', label: 'I\'ve got a question' },
+      { value: 'other', label: 'Something else...' },
+    ],
+  },
   message: { type: Types.Markdown, required: true },
   createdAt: { type: Date, default: Date.now },
 });
@@ -49,10 +53,10 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
     return callback(new Error('could not find mailgun credentials'));
   }
 
-  var enquiry = this;
-  var brand = keystone.get('brand');
+  const enquiry = this;
+  const brand = keystone.get('brand');
 
-  keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admins) {
+  keystone.list('User').model.find().where('isAdmin', true).exec((err, admins) => {
     if (err) return callback(err);
     new keystone.Email({
       templateName: 'enquiry-notification',
@@ -64,8 +68,8 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
         email: 'contact@justinmhill-com.com',
       },
       subject: 'New Enquiry for justinmhill.com',
-      enquiry: enquiry,
-      brand: brand,
+      enquiry,
+      brand,
     }, callback);
   });
 };
