@@ -7,9 +7,6 @@
     "@neutrinojs/node": "^8.2.3",
     "neutrino": "^8.2.3"
   },
-  "devDependencies": {
-    "nodemon": "^1.14.3"
-  },
   "scripts": {
     "lint": "neutrino lint"
   },

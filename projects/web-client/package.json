@@ -1,5 +1,5 @@
 {
-  "name": "@jmhill/justinmhill-client",
+  "name": "@jmhill/justinmhill-web-client",
   "version": "0.0.0",
   "description": "Client-side application for justinmhill.com",
   "main": "index.js",
@@ -8,11 +8,11 @@
   "dependencies": {
     "next": "^6.0.3",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-dom": "^16.4.0",
+    "@jmhill/justinmhill-api": "0.0.x"
   },
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "start": "node index.js",
+    "build": "next build"
   }
 }
