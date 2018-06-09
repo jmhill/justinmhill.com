@@ -18,33 +18,39 @@
  * http://expressjs.com/api.html#app.VERB
  */
 
-const keystone = require('keystone');
-const middleware = require('./middleware');
+// const keystone = require('keystone');
+// const middleware = require('./middleware');
 
-const importRoutes = keystone.importer(__dirname);
+// const importRoutes = keystone.importer(__dirname);
 
 // Common Middleware
-keystone.pre('routes', middleware.initLocals);
-keystone.pre('render', middleware.flashMessages);
+// keystone.pre('routes', middleware.initLocals);
+// keystone.pre('render', middleware.flashMessages);
 
-// Import Route Controllers
-const routes = {
-  views: importRoutes('./views'),
-};
+// // Import Route Controllers
+// const routes = {
+//   views: importRoutes('./views'),
+// };
 
 // Setup Route Bindings
 // 'app' parameter is express application,
 // so anything we can do to an express app, we can do here.
-exports = module.exports = function (app) {
-  // Views
-  app.get('/', routes.views.index);
-  app.get('/about', routes.views.about);
-  app.get('/blog/:category?', routes.views.blog);
-  app.get('/blog/post/:post', routes.views.post);
-  app.all('/contact', routes.views.contact);
-  app.get('/gallery', routes.views.gallery);
-  app.get('/projects', routes.views.projects);
-
+module.exports = handler => (app) => {
+  // Provide a test endpoint
+  app.get('/api/test', (request, response) => response.json({ data: 'It worked!' }));
+  
+  // TODO: get rid of the below bindings and mount the api router here
+  // app.get('/about', routes.views.about);
+  // app.get('/blog/:category?', routes.views.blog);
+  // app.get('/blog/post/:post', routes.views.post);
+  // app.all('/contact', routes.views.contact);
+  // app.get('/gallery', routes.views.gallery);
+  // app.get('/projects', routes.views.projects);
+  
+  // Use the client-provided handler for all other (non-api) requests to the server
+  // This enables server-side rendering for page requests
+  app.get('*', (request, response) => handler(request, response));
+  
   // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
   // app.get('/protected', middleware.requireUser, routes.views.protected);
 };

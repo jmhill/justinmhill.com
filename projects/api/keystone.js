@@ -1,4 +1,6 @@
-module.exports = function () {
+/* eslint-disable global-require */
+
+module.exports = function ex(handler) {
   // Simulate config options from your production environment by
   // customising the .env file in your project's root folder.
   require('dotenv').config();
@@ -33,15 +35,15 @@ module.exports = function () {
   // Setup common locals for your templates. The following are required for the
   // bundled templates and layouts. Any runtime locals (that should be set uniquely
   // for each request) should be added to ./routes/middleware.js
-  keystone.set('locals', {
-    _: require('lodash'),
-    env: keystone.get('env'),
-    utils: keystone.utils,
-    editable: keystone.content.editable,
-  });
+  // keystone.set('locals', {
+  //   _: require('lodash'),
+  //   env: keystone.get('env'),
+  //   utils: keystone.utils,
+  //   editable: keystone.content.editable,
+  // });
 
   // Load your project's Routes
-  keystone.set('routes', require('./routes'));
+  keystone.set('routes', require('./routes')(handler));
 
 
   // Configure the navigation bar in Keystone's Admin UI
@@ -52,18 +54,5 @@ module.exports = function () {
     users: 'users',
   });
 
-  // Start Keystone to connect to your database and initialise the web server
-
-
-  // if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
-  //   console.log('----------------------------------------'
-  // 	+ '\nWARNING: MISSING MAILGUN CREDENTIALS'
-  // 	+ '\n----------------------------------------'
-  // 	+ '\nYou have opted into email sending but have not provided'
-  // 	+ '\nmailgun credentials. Attempts to send will fail.'
-  // 	+ '\n\nCreate a mailgun account and add the credentials to the .env file to'
-  // 	+ '\nset up your mailgun integration');
-  // }
-
-  keystone.start();
+  return keystone;
 };
